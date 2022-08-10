@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-// import { createPortal } from 'react-dom';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
 import css from 'components/Modal/Modal.module.css';
 
-// const modalRoot = document.querySelector('#modalRoot');
+const modalRoot = document.querySelector('#modalRoot');
 
 export function Modal({ showModal, closeModal }) {
   useEffect(() => {
@@ -26,12 +26,13 @@ export function Modal({ showModal, closeModal }) {
     }
   };
 
-  return (
+  return createPortal(
     <div className={css.overlay} onClick={handleBackdropClick}>
       <div className={css.modal}>
         <img src={showModal.largeImageURL} alt={[showModal.tags]} />
       </div>
-    </div>
+    </div>,
+    modalRoot
   );
 }
 
