@@ -20,8 +20,6 @@ export function SearchForm({ onSubmit }) {
     }
 
     onSubmit(searchQuery);
-
-    setSearchQuery('');
   };
 
   return (
