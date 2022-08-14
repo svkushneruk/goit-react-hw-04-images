@@ -42,16 +42,13 @@ export function ImageGallery({ searchQuery }) {
       .finally(() => {
         setLoader(false);
       });
-  }, [page, searchQuery]);
-
-  useEffect(() => {
     if (page > 1) {
       window.scrollTo({
         top: document.documentElement.scrollHeight,
         behavior: 'smooth',
       });
     }
-  });
+  }, [page, searchQuery]);
 
   const handleItemClick = (id, largeImageURL, tags) => {
     setShowModal(true);
