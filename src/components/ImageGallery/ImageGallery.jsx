@@ -38,16 +38,19 @@ export function ImageGallery({ searchQuery }) {
 
     API.getImages(query, page)
       .then(response => setData(prevData => [...prevData, ...response.hits]))
+      .then(() => {
+        console.log(document.documentElement.scrollHeight);
+        setTimeout(() => {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth',
+          });
+        }, 100);
+      })
       .catch(error => setError({ error }))
       .finally(() => {
         setLoader(false);
       });
-    if (page > 1) {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth',
-      });
-    }
   }, [page, searchQuery]);
 
   const handleItemClick = (id, largeImageURL, tags) => {
